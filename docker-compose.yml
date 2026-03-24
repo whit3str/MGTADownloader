@@ -1,0 +1,18 @@
+
+version: '3.8'
+
+services:
+  mtga-downloader:
+    image: ghcr.io/whit3str/mgtadownloader:latest
+    container_name: mtga-downloader
+    env_file:
+      - .env
+    volumes:
+      # Expose only the Audio folder to the host system as requested
+      - ./AudioOut:/data/MTGA_Data/Downloads/Audio
+      # Perserve Steam configuration to avoid Rate Limit (trop de tentatives)
+      - steam_data:/home/steam/Steam
+    restart: "no" # Start it manually when you want to update/download
+
+volumes:
+  steam_data:
