@@ -1,4 +1,3 @@
-
 version: '3.8'
 
 services:
@@ -9,7 +8,7 @@ services:
       - .env
     volumes:
       # Expose only the Audio folder to the host system as requested
-      - ./AudioOut:/data/MTGA_Data/Downloads/Audio
+      - ./AudioOut:/AudioOut
       # Perserve Steam configuration to avoid Rate Limit (trop de tentatives)
       - steam_data:/home/steam/Steam
     restart: "no" # Start it manually when you want to update/download

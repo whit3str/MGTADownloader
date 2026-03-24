@@ -31,7 +31,11 @@ echo "If this happens, put the code in STEAM_GUARD_CODE within the .env file and
 EXIT_CODE=$?
 
 if [ $EXIT_CODE -eq 0 ]; then
-    echo "Download completed successfully! The Audio folder is exposed via Docker volume."
+    echo "Download completed successfully!"
+    echo "Copying Audio files to the exposed host volume..."
+    mkdir -p /AudioOut
+    cp -uR /data/MTGA_Data/Downloads/Audio/* /AudioOut/
+    echo "Copy complete! The Audio folder is available on your host."
 else
     echo "SteamCMD exited with an error code: $EXIT_CODE"
 fi
